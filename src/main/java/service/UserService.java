@@ -13,8 +13,8 @@ public class UserService {
     public User createUser(String name, String password) {
         User user = new User(name, password);
         repository.createUser(user);
-        int idByName = repository.getIdByName(user.getName());
-        if (idByName != -1) {
+        int idByName = repository.getUsersCount(user.getName());
+        if (idByName != 0) {
             user.setId(idByName);
             return user;
         }
@@ -27,7 +27,7 @@ public class UserService {
     }
 
     public boolean canCreate(String name) {
-        return repository.getIdByName(name) == -1;
+        return repository.getUsersCount(name) == 0;
     }
 
     public User getUser(String name) {

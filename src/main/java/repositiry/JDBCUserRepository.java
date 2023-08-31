@@ -40,26 +40,21 @@ public class JDBCUserRepository implements UserRepository {
     }
 
     @Override
-    public int getIdByName(String name) {
+    public int getUsersCount(String name) {
+        int userCount = 0;
         try {
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres",
                     "postgres", "root");
-            PreparedStatement preparedStatement = connection.prepareStatement("select id from users where name = ?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select count(*) from users where name = ?");
             preparedStatement.setString(1, name);
             ResultSet resultSet = preparedStatement.executeQuery();
-            int id = -1;
             if (resultSet.next()) {
-                int anInt = resultSet.getInt(1);
-                if (anInt != 0) {
-                    id = anInt;
-                }
+                userCount = resultSet.getInt(1);
             }
-            preparedStatement.close();
-            return id;
         } catch (SQLException e) {
             e.printStackTrace();
-            return -1;
         }
+        return userCount;
     }
 
     @Override

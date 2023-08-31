@@ -21,7 +21,7 @@ public class LoginServlet extends HttpServlet {
         if (service.getUser(name, password).isPresent()){
             User user = service.getUser(name);
             req.getSession(true).setAttribute("currentUser", user);
-            resp.sendRedirect("/");
+
 
         } else resp.getWriter().println("Invalid login or password. Try again");
     }

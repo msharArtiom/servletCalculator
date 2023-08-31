@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JDBCOperationRepository implements OperationRepository{
+public class JDBCOperationRepository implements OperationRepository {
     @Override
     public void save(Operation operation) {
 
@@ -29,6 +29,7 @@ public class JDBCOperationRepository implements OperationRepository{
             e.getStackTrace();
         }
     }
+
     @Override
     public List<Operation> findAll(User user) {
         List<Operation> operations = new ArrayList<>();

@@ -10,7 +10,7 @@ public interface UserRepository {
 
     Optional<User> getUser(String name, String password);
 
-    int getIdByName(String name);
+    int getUsersCount(String name);
 
     User getUserByName(String name);
 }

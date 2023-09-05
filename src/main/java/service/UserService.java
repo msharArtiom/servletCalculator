@@ -13,13 +13,7 @@ public class UserService {
     public User createUser(String name, String password) {
         User user = new User(name, password);
         repository.createUser(user);
-        int idByName = repository.getUsersCount(user.getName());
-        if (idByName != 0) {
-            user.setId(idByName);
-            return user;
-        }
-
-        throw new IllegalArgumentException("User not created");
+        return user;
     }
 
     public Optional<User> getUser(String username, String password) {
